@@ -8,13 +8,14 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import bitcamp.java89.ems.server.vo.Classroom;
+
 public class ClassroomDao {
   private ArrayList<Classroom> list;
   private String filename = "classroom-v1.7.data";
   static ClassroomDao obj;
   
   private ClassroomDao() throws IOException {
-    this.doLoad();
+    this.load();
   }
   
   public static ClassroomDao getInstance() throws IOException {
@@ -25,7 +26,7 @@ public class ClassroomDao {
   }
 
   @SuppressWarnings("unchecked")
-  private void doLoad() {
+  private void load() {
     FileInputStream in0 = null;
     ObjectInputStream in = null;
     try {
@@ -48,7 +49,9 @@ public class ClassroomDao {
   public void save() throws Exception {
     FileOutputStream out0 = new FileOutputStream(this.filename);
     ObjectOutputStream out = new ObjectOutputStream(out0);
+
     out.writeObject(list);
+
     out.close();
     out0.close();
   }
@@ -78,6 +81,7 @@ public class ClassroomDao {
   
   synchronized public void insert(Classroom classroom) {
     list.add(classroom);
+    try {this.save();} catch (Exception e) {}
     return;
   }
 
@@ -85,6 +89,7 @@ public class ClassroomDao {
     for (int i = 0; i < list.size(); i++) {
       if (list.get(i).getRoomNo() == roomNo) {
         list.remove(i);
+        try {this.save();} catch (Exception e) {}
         return;
       }
     }
@@ -94,6 +99,7 @@ public class ClassroomDao {
     for (int i = 0; i < list.size(); i++) {
       if (list.get(i).getRoomNo() == classroom.getRoomNo()) {
         list.set(i, classroom);
+        try {this.save();} catch (Exception e) {}
         return;
       }
     }
