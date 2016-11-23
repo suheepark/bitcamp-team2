@@ -13,6 +13,10 @@ public class ClassroomDeleteController implements Command {
   }
 
   public void service(HashMap<String,String> paramMap, PrintStream out) {
+    if (!classroomDao.existRoomNo(Integer.parseInt(paramMap.get("roomno")))) {
+      out.println("해당 데이터가 없습니다.");
+      return;
+    }
     classroomDao.delete(Integer.parseInt(paramMap.get("roomno")));
     out.println("삭제하였습니다");
   }

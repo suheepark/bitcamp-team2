@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import bitcamp.java89.ems.server.vo.Classroom;
 public class ClassroomDao {
   private ArrayList<Classroom> list;
-  static boolean changed = false;
   private String filename = "classroom-v1.7.data";
   static ClassroomDao obj;
   
@@ -23,10 +22,6 @@ public class ClassroomDao {
       obj = new ClassroomDao();
     }
     return obj;
-  }
-
-  public boolean isChanged() {
-    return changed;
   }
 
   @SuppressWarnings("unchecked")
@@ -54,7 +49,6 @@ public class ClassroomDao {
     FileOutputStream out0 = new FileOutputStream(this.filename);
     ObjectOutputStream out = new ObjectOutputStream(out0);
     out.writeObject(list);
-    changed = false;
     out.close();
     out0.close();
   }
@@ -84,7 +78,6 @@ public class ClassroomDao {
   
   synchronized public void insert(Classroom classroom) {
     list.add(classroom);
-    changed = true;
     return;
   }
 
@@ -92,7 +85,6 @@ public class ClassroomDao {
     for (int i = 0; i < list.size(); i++) {
       if (list.get(i).getRoomNo() == roomNo) {
         list.remove(i);
-        changed = true;
         return;
       }
     }
@@ -102,7 +94,6 @@ public class ClassroomDao {
     for (int i = 0; i < list.size(); i++) {
       if (list.get(i).getRoomNo() == classroom.getRoomNo()) {
         list.set(i, classroom);
-        changed = true;
         return;
       }
     }

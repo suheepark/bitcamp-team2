@@ -1,7 +1,6 @@
 package bitcamp.java89.ems.server.controller;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import bitcamp.java89.ems.server.Command;
@@ -15,7 +14,10 @@ public class ClassroomAddController implements Command {
   }
 
   public void service(HashMap<String,String> paramMap, PrintStream out) {
-    ArrayList<Classroom> list = classroomDao.getListByRoomNo(Integer.parseInt(paramMap.get("roomno")));
+    if (classroomDao.existRoomNo(Integer.parseInt((paramMap.get("roomno"))))) {
+      out.println("동일한 강의실 번호가 존재합니다. 등록을 취소합니다.");
+      return;
+    }
     Classroom classroom = new Classroom(); 
     classroom.setRoomNo(Integer.parseInt(paramMap.get("roomno")));
     classroom.setCapacity(Integer.parseInt(paramMap.get("capacity")));

@@ -14,6 +14,10 @@ public class ClassroomUpdateController implements Command {
   }
 
   public void service(HashMap<String,String> paramMap, PrintStream out) {
+    if (!classroomDao.existRoomNo(Integer.parseInt(paramMap.get("roomno")))) {
+      out.println("데이터를 찾지 못했습니다.");
+      return;
+    }
     Classroom classroom = new Classroom();
     classroom.setRoomNo(Integer.parseInt(paramMap.get("roomno")));
     classroom.setCapacity(Integer.parseInt(paramMap.get("capacity")));
