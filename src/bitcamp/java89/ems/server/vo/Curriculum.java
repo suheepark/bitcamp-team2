@@ -1,6 +1,8 @@
 package bitcamp.java89.ems.server.vo;
 
-public class Curriculum {
+import java.io.Serializable;
+
+public class Curriculum implements Serializable {
   //인스턴스 변수
   public String curriculumName;
   public String introduce;
@@ -12,7 +14,9 @@ public class Curriculum {
   public int time;
   public int term;
 
-  public Curriculum() {}
+  public Curriculum() {
+    super();
+  }
 
   public Curriculum(String curriculumName, String benefit, String document, int limit, int time) {
     this.curriculumName = curriculumName;

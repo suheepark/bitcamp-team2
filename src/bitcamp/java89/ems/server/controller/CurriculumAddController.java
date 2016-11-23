@@ -20,7 +20,7 @@ public class CurriculumAddController implements Command {
       out.println("같은 이름이 존재합니다. 등록을 취소합니다.");
       return;
     }
-    
+    // curriculum/add?curriculumName=111&introduce=111&benefit=111&target=111&document=111&levelTest=true&limit=111&time=111&term=111
     Curriculum curriculum = new Curriculum();
     curriculum.setCurriculumName(paramMap.get("curriculumName"));
     curriculum.setIntroduce(paramMap.get("introduce"));

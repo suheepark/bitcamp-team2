@@ -15,11 +15,12 @@ public class CurriculumUpdateController implements Command {
   }
 
   public void service(HashMap<String,String> paramMap, PrintStream out) {
-    if (!curriculumDao.existCurriculumName(paramMap.get("CurriculumName"))) {
+    if (!curriculumDao.existCurriculumName(paramMap.get("curriculumName"))) {
       out.print("이메일을 찾지 못했습니다.\n");
       return;
     }
     Curriculum curriculum = new Curriculum();
+    curriculum.setCurriculumName(paramMap.get("curriculumName"));
     curriculum.setIntroduce(paramMap.get("introduce"));
     curriculum.setBenefit(paramMap.get("benefit"));
     curriculum.setTarget(paramMap.get("target"));

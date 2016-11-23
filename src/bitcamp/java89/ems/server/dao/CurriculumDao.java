@@ -68,7 +68,7 @@ public class CurriculumDao {
   }
   
   public ArrayList<Curriculum> getListByCurriculumName(String CurriculumName) {
-    ArrayList<Curriculum> results = new ArrayList<>();
+    ArrayList<Curriculum> results = new ArrayList();
     for (Curriculum curriculum : list) {
       if (curriculum.getCurriculumName().equals(CurriculumName)) {
         results.add(curriculum);
