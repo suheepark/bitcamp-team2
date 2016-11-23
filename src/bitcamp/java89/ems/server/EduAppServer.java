@@ -1,9 +1,14 @@
 package bitcamp.java89.ems.server;
 
+import java.io.IOException;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.HashMap;
 
+import bitcamp.java89.ems.server.controller.ClassroomAddController;
+import bitcamp.java89.ems.server.controller.ClassroomDeleteController;
+import bitcamp.java89.ems.server.controller.ClassroomListController;
+import bitcamp.java89.ems.server.controller.ClassroomUpdateController;
+import bitcamp.java89.ems.server.controller.ClassroomViewController;
 import bitcamp.java89.ems.server.controller.ContactAddController;
 import bitcamp.java89.ems.server.controller.ContactDeleteController;
 import bitcamp.java89.ems.server.controller.ContactListController;
@@ -20,7 +25,7 @@ public class EduAppServer {
  
   HashMap<String,Command> commandMap = new HashMap<>();
   
-  public EduAppServer() {
+  public EduAppServer() throws IOException {
     commandMap.put("contact/list", new ContactListController());
     commandMap.put("contact/view", new ContactViewController());
     commandMap.put("contact/add", new ContactAddController());
@@ -32,6 +37,12 @@ public class EduAppServer {
     commandMap.put("teacher/add", new TeacherAddController());
     commandMap.put("teacher/delete", new TeacherDeleteController());
     commandMap.put("teacher/update", new TeacherUpdateController());
+    
+    commandMap.put("classroom/add",new ClassroomAddController());
+    commandMap.put("classroom/list",new ClassroomListController());
+    commandMap.put("classroom/view",new ClassroomViewController());
+    commandMap.put("classroom/delete",new ClassroomDeleteController());
+    commandMap.put("classroom/update",new ClassroomUpdateController());
   }
   private void service() throws Exception {
     ServerSocket ss = new ServerSocket(8888);
@@ -40,10 +51,6 @@ public class EduAppServer {
     while (true) {
       new RequestThread(ss.accept(), commandMap).start();
     }
-  }
-
-  private void processRequest(Socket socket)  {
-    
   }
   
   public static void main(String[] args) throws Exception {
