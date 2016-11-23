@@ -18,7 +18,7 @@ public class TeacherListController implements Command {
     teacherDao = TeacherDao.getInstance();
   }
 
-  public void service(HashMap<String, String> paraMap, PrintStream out) {
+  public void service(HashMap<String, String> paramMap, PrintStream out) {
     ArrayList<Teacher> list = teacherDao.getList();
     for (Teacher teacher : list) {
       out.printf("%s, %s, %s, %s, %s, %s\n",

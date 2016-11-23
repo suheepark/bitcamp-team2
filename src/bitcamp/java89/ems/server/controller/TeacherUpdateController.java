@@ -18,17 +18,17 @@ public class TeacherUpdateController implements Command {
     teacherDao = TeacherDao.getInstance();
   }
 
-  public void service(HashMap<String, String> paraMap, PrintStream out) {
-    if (!teacherDao.existEmail(paraMap.get("email"))) {
+  public void service(HashMap<String, String> paramMap, PrintStream out) {
+    if (!teacherDao.existEmail(paramMap.get("email"))) {
       out.print("이메일을 찾지 못했습니다.\n");
     }
     Teacher teacher = new Teacher();
-      teacher.setEmail(paraMap.get("email"));
-      teacher.setName(paraMap.get("name"));
-      teacher.setCareer(paraMap.get("career"));
-      teacher.setLangauge(paraMap.get("langauge"));
-      teacher.setBook(paraMap.get("book").equals("true") ? true : false);
-      teacher.setTel(paraMap.get("tel"));
+      teacher.setEmail(paramMap.get("email"));
+      teacher.setName(paramMap.get("name"));
+      teacher.setCareer(paramMap.get("career"));
+      teacher.setLangauge(paramMap.get("langauge"));
+      teacher.setBook(paramMap.get("book").equals("true") ? true : false);
+      teacher.setTel(paramMap.get("tel"));
       teacherDao.update(teacher);
       out.printf("업데이트 완료하였습니다.\n");
       return;

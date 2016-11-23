@@ -15,8 +15,8 @@ public class ContactViewController implements Command {
     contactDao = ContactDao.getInstance();
   }
 
-  public void service(HashMap<String, String> paraMap, PrintStream out) {
-    ArrayList<Contact> list = contactDao.getListByName(paraMap.get("name"));
+  public void service(HashMap<String, String> paramMap, PrintStream out) {
+    ArrayList<Contact> list = contactDao.getListByName(paramMap.get("name"));
     for (Contact contact : list) {
       out.print("--------------------------------------\n");
         out.printf("아이디: %s\n이름: %s\n전화: %s\n이메일: %s\n", 

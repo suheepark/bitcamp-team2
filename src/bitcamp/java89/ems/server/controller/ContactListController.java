@@ -15,7 +15,7 @@ public class ContactListController implements Command {
     contactDao = ContactDao.getInstance();
   }
 
-  public void service(HashMap<String,String> paraMap, PrintStream out) {
+  public void service(HashMap<String,String> paramMap, PrintStream out) {
     ArrayList<Contact> list = contactDao.getList();
     for (Contact contact : list) {
       out.printf("%s,%s,%s,%s\n",

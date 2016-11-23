@@ -18,18 +18,18 @@ public class TeacherAddController implements Command {
     teacherDao = TeacherDao.getInstance();
   }
 
-  public void service(HashMap<String, String> paraMap, PrintStream out) {
-    if (teacherDao.existEmail(paraMap.get("email"))) {
+  public void service(HashMap<String, String> paramMap, PrintStream out) {
+    if (teacherDao.existEmail(paramMap.get("email"))) {
       out.println("같은 이메일이 존재합니다. 등록을 취소합니다.");
       return;
     }
     Teacher teacher = new Teacher();
-    teacher.setName(paraMap.get("name"));
-    teacher.setCareer(paraMap.get("career"));
-    teacher.setLangauge(paraMap.get("langauge"));
-    teacher.setBook(paraMap.get("book").equals("true") ? true : false);
-    teacher.setEmail(paraMap.get("email"));
-    teacher.setTel(paraMap.get("tel"));
+    teacher.setName(paramMap.get("name"));
+    teacher.setCareer(paramMap.get("career"));
+    teacher.setLangauge(paramMap.get("langauge"));
+    teacher.setBook(paramMap.get("book").equals("true") ? true : false);
+    teacher.setEmail(paramMap.get("email"));
+    teacher.setTel(paramMap.get("tel"));
     
     teacherDao.insert(teacher);
     out.println("등록하였습니다.");

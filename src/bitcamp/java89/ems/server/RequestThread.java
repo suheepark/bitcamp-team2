@@ -38,14 +38,14 @@ public class RequestThread extends Thread {
        // 클라이언트가 보낸 명령문을 분석하여 명령어와 파라미터 로 분리 추출한다.
         String[] command = in.nextLine().split("\\?");
        
-        HashMap<String,String> paraMap = new HashMap<>();
+        HashMap<String,String> paramMap = new HashMap<>();
        
        // 파라미터 문자열이 있다면 이 문자열을 분석하여 HashMap에 보관
         if (command.length == 2) {
         String[] params = command[1].split("&");
           for (String value : params) {
             String[] kv = value.split("=");
-            paraMap.put(kv[0], kv[1]);
+            paramMap.put(kv[0], kv[1]);
           }
         }
        
@@ -60,7 +60,7 @@ public class RequestThread extends Thread {
            continue; // 다음줄 실행 안하고 반복문 조건 검사로 건너 뛴다.
          } 
          // 클라이언트가 보낸 명령을 처리할 객체가 있다면 작업을 실행한다.
-         commandHandler.service(paraMap, out);
+         commandHandler.service(paramMap, out);
       }
     } catch (Exception e) {
     

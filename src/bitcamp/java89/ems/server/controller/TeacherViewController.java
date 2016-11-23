@@ -18,8 +18,8 @@ public class TeacherViewController implements Command {
     teacherDao = TeacherDao.getInstance();
   }
 
-  public void service(HashMap<String, String> paraMap, PrintStream out) {
-    ArrayList<Teacher> list = teacherDao.getListByName(paraMap.get("name"));
+  public void service(HashMap<String, String> paramMap, PrintStream out) {
+    ArrayList<Teacher> list = teacherDao.getListByName(paramMap.get("name"));
     for (Teacher teacher : list) {
       out.printf("%s, %s, %s, %s, %s, %s\n",
           teacher.getName(),

@@ -15,12 +15,12 @@ public class ContactDeleteController implements Command {
     contactDao = ContactDao.getInstance();
   }
 
-  public void service(HashMap<String,String> paraMap, PrintStream out) {
-    if (!contactDao.existEmail(paraMap.get("email"))) {
+  public void service(HashMap<String,String> paramMap, PrintStream out) {
+    if (!contactDao.existEmail(paramMap.get("email"))) {
       out.println("해당 데이터가 없습니다.");
       return;
     }
-    contactDao.delete(paraMap.get("email"));
+    contactDao.delete(paramMap.get("email"));
     out.print("삭제하였습니다.\n");
   }
 }

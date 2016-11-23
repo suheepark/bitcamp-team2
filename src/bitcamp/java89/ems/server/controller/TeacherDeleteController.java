@@ -18,12 +18,12 @@ public class TeacherDeleteController implements Command {
     teacherDao = TeacherDao.getInstance();
   }
 
-  public void service(HashMap<String, String> paraMap, PrintStream out) {
-    if (!teacherDao.existName(paraMap.get("name"))) {
+  public void service(HashMap<String, String> paramMap, PrintStream out) {
+    if (!teacherDao.existName(paramMap.get("name"))) {
       out.println("해당 데이터가 없습니다.");
       return;
     }
-    teacherDao.delete(paraMap.get("name"));
+    teacherDao.delete(paramMap.get("name"));
     out.print("삭제하였습니다.\n");
   
   }
